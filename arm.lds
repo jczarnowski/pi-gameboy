@@ -11,32 +11,45 @@ SECTIONS
   /* Vector table */
   .isr_vector :
   {
+    . = ALIGN(4);
     KEEP(*(.isr_vector))
+    . = ALIGN(4);
   } > flash
   
   /* Program code */
   .text : 
   {
+    . = ALIGN(4);
     *(.text*)
+    . = ALIGN(4);
   } > flash
 
   /* Read only data */
   .rodata :
   {
+    . = ALIGN(4);
     *(.rodata*)
+    . = ALIGN(4);
+    _code_end = .; /* No FLASH beyond this point, only .data section contents */
   } > flash
- 
+  
   /* RW data */
   .data : 
   {
+    . = ALIGN(4);
+    _data_start = .;
     *(.data)
-  } > ram
+    . = ALIGN(4);
+    _data_end = .;
+  } > ram AT > flash
  
   /* BSS section */
+  . = ALIGN(4);
   .bss :
   {
     _bss_start = .;
     *(.bss)
+    . = ALIGN(4);
     _bss_end = .;
   } > ram
 } 
