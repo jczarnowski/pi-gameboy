@@ -3,7 +3,6 @@ project(gamejoy CXX C)
 
 set(CMAKE_BUILD_TYPE Debug)
 
-
 set(C_SOURCES
   hal/stm32f4xx_ll_rcc.c
   hal/stm32f4xx_ll_pwr.c
@@ -15,7 +14,8 @@ add_executable(${EXEC_NAME})
 target_sources(${EXEC_NAME} PRIVATE
   ${C_SOURCES}
   src/main.cpp
-  src/startup.cpp
+  src/vectors_stm32f4.cpp
+  src/reset_handler.cpp
 )
 set_source_files_properties(${C_SOURCES} PROPERTIES LANGUAGE C)
 target_include_directories(${EXEC_NAME} PRIVATE

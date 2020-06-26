@@ -3,6 +3,12 @@
 #include "stm32f4xx_ll_bus.h"
 #include "stm32f4xx_ll_system.h"
 
+void Exception_HardFault()
+{
+  int a;
+  while(1);
+}
+
 void ClockSetup()
 {  
   // reset to defaults
@@ -46,9 +52,12 @@ void ClockSetup()
   SystemCoreClockUpdate();
 }
 
-void Main()
+void SystemSetup()
 {
   ClockSetup();
-  
+}
+
+int main()
+{
   while (1);
 }
