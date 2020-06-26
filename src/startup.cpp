@@ -301,9 +301,9 @@ extern char _code_end;
 void Reset_Handler()
 {
   // copy data from flash to ram
-  //const char* from = &_code_end;
-  //for (char* p = &_data_start; p < &_data_end; ++p)
-  //  *p++ = *from++;
+  const char* from = &_code_end;
+  for (char* p = &_data_start; p < &_data_end; ++p)
+    *p = *from++;
 
   // set the bss section to zero
   for (char* p = &_bss_start; p < &_bss_end; ++p)
